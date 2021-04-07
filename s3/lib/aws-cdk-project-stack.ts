@@ -8,10 +8,13 @@ export class AwsCdkProjectStack extends cdk.Stack {
     super(scope, id, props);
 
     // The code that defines your stack goes here
-   new s3.Bucket(this, "myfirstcdkbucket",{
-     publicReadAccess: false,
-     enforceSSL: true
-   })
+   new s3.Bucket(this, "myfirstcdkbucket")
+
+   new s3.Bucket(this, "mysecondcdkbucketwithpropertiesset",{
+    publicReadAccess: true,
+    enforceSSL: true,
+    encryption: s3.BucketEncryption.S3_MANAGED
+  })
 
   }
 }

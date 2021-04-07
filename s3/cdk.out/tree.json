@@ -32,18 +32,58 @@
                   "version": "1.97.0"
                 }
               },
+              "Notifications": {
+                "id": "Notifications",
+                "path": "AwsCdkProjectStack/myfirstcdkbucket/Notifications",
+                "constructInfo": {
+                  "fqn": "@aws-cdk/core.Construct",
+                  "version": "1.97.0"
+                }
+              }
+            },
+            "constructInfo": {
+              "fqn": "@aws-cdk/aws-s3.Bucket",
+              "version": "1.97.0"
+            }
+          },
+          "mysecondcdkbucketwithpropertiesset": {
+            "id": "mysecondcdkbucketwithpropertiesset",
+            "path": "AwsCdkProjectStack/mysecondcdkbucketwithpropertiesset",
+            "children": {
+              "Resource": {
+                "id": "Resource",
+                "path": "AwsCdkProjectStack/mysecondcdkbucketwithpropertiesset/Resource",
+                "attributes": {
+                  "aws:cdk:cloudformation:type": "AWS::S3::Bucket",
+                  "aws:cdk:cloudformation:props": {
+                    "bucketEncryption": {
+                      "serverSideEncryptionConfiguration": [
+                        {
+                          "serverSideEncryptionByDefault": {
+                            "sseAlgorithm": "AES256"
+                          }
+                        }
+                      ]
+                    }
+                  }
+                },
+                "constructInfo": {
+                  "fqn": "@aws-cdk/aws-s3.CfnBucket",
+                  "version": "1.97.0"
+                }
+              },
               "Policy": {
                 "id": "Policy",
-                "path": "AwsCdkProjectStack/myfirstcdkbucket/Policy",
+                "path": "AwsCdkProjectStack/mysecondcdkbucketwithpropertiesset/Policy",
                 "children": {
                   "Resource": {
                     "id": "Resource",
-                    "path": "AwsCdkProjectStack/myfirstcdkbucket/Policy/Resource",
+                    "path": "AwsCdkProjectStack/mysecondcdkbucketwithpropertiesset/Policy/Resource",
                     "attributes": {
                       "aws:cdk:cloudformation:type": "AWS::S3::BucketPolicy",
                       "aws:cdk:cloudformation:props": {
                         "bucket": {
-                          "Ref": "myfirstcdkbucket89E61678"
+                          "Ref": "mysecondcdkbucketwithpropertiesset8ED9ECD9"
                         },
                         "policyDocument": {
                           "Statement": [
@@ -62,7 +102,26 @@
                                   [
                                     {
                                       "Fn::GetAtt": [
-                                        "myfirstcdkbucket89E61678",
+                                        "mysecondcdkbucketwithpropertiesset8ED9ECD9",
+                                        "Arn"
+                                      ]
+                                    },
+                                    "/*"
+                                  ]
+                                ]
+                              }
+                            },
+                            {
+                              "Action": "s3:GetObject",
+                              "Effect": "Allow",
+                              "Principal": "*",
+                              "Resource": {
+                                "Fn::Join": [
+                                  "",
+                                  [
+                                    {
+                                      "Fn::GetAtt": [
+                                        "mysecondcdkbucketwithpropertiesset8ED9ECD9",
                                         "Arn"
                                       ]
                                     },
@@ -89,7 +148,7 @@
               },
               "Notifications": {
                 "id": "Notifications",
-                "path": "AwsCdkProjectStack/myfirstcdkbucket/Notifications",
+                "path": "AwsCdkProjectStack/mysecondcdkbucketwithpropertiesset/Notifications",
                 "constructInfo": {
                   "fqn": "@aws-cdk/core.Construct",
                   "version": "1.97.0"

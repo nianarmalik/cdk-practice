@@ -8,11 +8,30 @@
         "aws:cdk:path": "AwsCdkProjectStack/myfirstcdkbucket/Resource"
       }
     },
-    "myfirstcdkbucketPolicy5EBBC6A6": {
+    "mysecondcdkbucketwithpropertiesset8ED9ECD9": {
+      "Type": "AWS::S3::Bucket",
+      "Properties": {
+        "BucketEncryption": {
+          "ServerSideEncryptionConfiguration": [
+            {
+              "ServerSideEncryptionByDefault": {
+                "SSEAlgorithm": "AES256"
+              }
+            }
+          ]
+        }
+      },
+      "UpdateReplacePolicy": "Retain",
+      "DeletionPolicy": "Retain",
+      "Metadata": {
+        "aws:cdk:path": "AwsCdkProjectStack/mysecondcdkbucketwithpropertiesset/Resource"
+      }
+    },
+    "mysecondcdkbucketwithpropertiessetPolicy9BEF094A": {
       "Type": "AWS::S3::BucketPolicy",
       "Properties": {
         "Bucket": {
-          "Ref": "myfirstcdkbucket89E61678"
+          "Ref": "mysecondcdkbucketwithpropertiesset8ED9ECD9"
         },
         "PolicyDocument": {
           "Statement": [
@@ -31,7 +50,26 @@
                   [
                     {
                       "Fn::GetAtt": [
-                        "myfirstcdkbucket89E61678",
+                        "mysecondcdkbucketwithpropertiesset8ED9ECD9",
+                        "Arn"
+                      ]
+                    },
+                    "/*"
+                  ]
+                ]
+              }
+            },
+            {
+              "Action": "s3:GetObject",
+              "Effect": "Allow",
+              "Principal": "*",
+              "Resource": {
+                "Fn::Join": [
+                  "",
+                  [
+                    {
+                      "Fn::GetAtt": [
+                        "mysecondcdkbucketwithpropertiesset8ED9ECD9",
                         "Arn"
                       ]
                     },
@@ -45,7 +83,7 @@
         }
       },
       "Metadata": {
-        "aws:cdk:path": "AwsCdkProjectStack/myfirstcdkbucket/Policy/Resource"
+        "aws:cdk:path": "AwsCdkProjectStack/mysecondcdkbucketwithpropertiesset/Policy/Resource"
       }
     },
     "CDKMetadata": {
